@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block body %}
+
+<form action = "/{{username}}/newroom/" method = "POST">
+<p>ルームIDを入力してください</p>
+<p><input type="text" name="room_id" size="20"></p>
+<p>ルームの名前を入力してください</p>
+<p><input type="text" name="room_name" size="20"></p>
+<p>パスワードを入力してください</p>
+<p><input type="text" name="password" size="20"></p>
+<p><input class="button" type="submit" value="作成"></p>
+</form>
+<h2>{{notice}}</h2>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>こんにちは。あなたは{{visitor_number}}番目の訪問者です。</h1>
+
+<h2>ログインしてください</h2>
+<p><a href="{{url_for('show_login_form')}}">ログイン</a></p>
+{% endblock %}

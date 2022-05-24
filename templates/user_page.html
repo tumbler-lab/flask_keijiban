@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block body %}
+
+<form action = "/{{username}}/room/" method="POST">
+<h2>ルームIDとパスワードを入力してください</h2>
+<p>ルームID</p>
+<p><input type="text" name="room_id" size="20"></p>
+<p>パスワード</p>
+<p><input type="password" name="password" size="20"></p>
+<p><input class="button" type="submit" value="入室"></p>
+
+<p></p>
+<h2><a href="{{url_for('show_newroom_form', username=username)}}">ルームを作る</a></h2>
+
+<h2>{{notice}}</h2>
+{% endblock %}

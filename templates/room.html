@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block body %}
+<header id="header">
+	
+	<form action = "/{{username}}/user_page/" method = "GET">
+		<input type="hidden" name="room_id", value={{room_id}} size="0">
+		<h1>
+			ルーム{{room_name}}
+			<input class="button" type="submit" value="退出">
+		</h1>
+	</form>
+</header>
+<div id="main">
+	<p></p>
+	<form action = "/{{username}}/room/{{room_name}}/" method = "POST">
+		<p>
+			<input id="messagebox" type="text" name="message" size="50" minlength="3" maxlength="1000"　required  placeholder="{{room_name}}へのメッセージ">
+			<input type="hidden" name="room_id", value={{room_id}} size="0">
+			<input class="button" style="text-align: left" type="submit" value="📩">
+		</p>
+	</form>
+	<table>
+		
+		<tr>
+			<th>ユーザ名</th>
+			<th>メッセージ</th>
+			<th style="text-align: right" width="50%">時間</th>
+		</tr>
+		{% for message in messages %}
+		<tr>
+			<td>{{message[0]}}</td>
+			<td>{{message[1]}}</td>
+			<td style="text-align: right" width="50%">{{message[2]}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+<aside id="sub" type="hidden">
+	<form action = "/{{username}}/room/{{room_name}}/" method = "GET">
+		<input type="hidden" name="room_id", value={{room_id}} size="0">
+		<h1>
+			<input class="button" type="submit" value="リロード">
+		</h1>
+	</form>
+</aside>
+<!-- <aside id="sub" type="hidden">
+	<h2>現在のユーザ</h2>
+	<ul>
+		{% for room_member in room_members %}
+		<li>{{room_member[0]}}</li>
+		{% endfor %}
+	</ul>
+</aside> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+	// let request = new XMLHttpRequest();
+	// var timer1 = setTimeout(function(){
+	// 	//location.reload(true)
+	// 	// $.get(
+	// 	// 		"{{url_for('load_chat', username=username, room_name=room_name)}}",
+	// 	// 		{room_id : "{{room_id}}"}
+	// 	// 	);
+	// 	request.open('GET', "{{url_for('load_chat', username=username, room_name=room_name)}}?room_id={{room_id}}");
+	// 	request.send();
+	// 	}, 5000);
+		// フォーカスを得た場合
+	function gotfocus() {
+		//clearTimeout(timer1)
+		this.style.height = "5em";             // 高さを5文字分にする
+		this.style.backgroundColor = "#ffe";    // 背景色を薄い黄色にする
+		
+	}
+	// フォーカスを失った場合
+	function lostfocus() {
+		if( this.value.length == 0 ) {
+			// 文字数がゼロなら
+			this.style.height = "3em";          // 高さを3文字分にする
+		}
+		this.style.backgroundColor = "#fff";    // 背景色を白色にする
+		// timer1 = setTimeout(function(){
+		// 	// $.get(
+		// 	// 	"{{url_for('load_chat', username=username, room_name=room_name)}}",
+		// 	// 	{room_id : "{{room_id}}"}
+		// 	// );
+		// 	request.open('GET', "{{url_for('load_chat', username=username, room_name=room_name)}}?room_id={{room_id}}");
+		// 	request.send();
+		// }, 5000);
+	}
+	// テキストエリアのイベントに、上記関数を割り当てる
+	document.getElementById("messagebox").onfocus = gotfocus;    // フォーカスを得た場合
+	document.getElementById("messagebox").onblur = lostfocus;    // フォーカスを失った場合
+	// $('#messagebox').onfocus = gotfocus;
+	// $('#messagebox').onblur = lostfocus;
+</script>
+{% endblock %}
+

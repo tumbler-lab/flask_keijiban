@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block body %}
+<p><a href="{{url_for('show_account_form')}}">新規作成</a></p>
+<form action = "/login/" method = "POST">
+	<h3>ログインしてください</h3>
+	
+	<p>ユーザID</p>
+	<p><input type="text" name="user_id" size="50" minlength="3" maxlength="1000" required  placeholder="user_id"></p>
+	<p>パスワード</p>
+    <p><input type="password" name="password" size="50" minlength="3" maxlength="1000" required  placeholder="password"></p>
+	<p><input class="button" type="submit" value="ログイン"></p>
+</form>
+<h2>{{notice}}</h2>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block body %}
+<form action = "/account/" method = "POST">
+    <h3>アカウントの作成</h3>
+
+    <p>ユーザID</p>
+    <p><input type="text" name="user_id" size="50" minlength="3" maxlength="1000" required  placeholder="user_id"></p>
+    <p>ユーザ名</p>
+    <p><input type="text" name="username" size="50" minlength="3" maxlength="1000" required  placeholder="username"></p>
+    <p>パスワード</p>
+    <p><input type="text" name="password" size="50" minlength="3" maxlength="1000" required  placeholder="password"></p>
+    <p><input class="button" type="submit" value="作成"></p>
+</form>
+<h2>{{notice}}</h2>
+{% endblock %}
+
